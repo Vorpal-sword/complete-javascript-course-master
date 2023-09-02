@@ -29,7 +29,7 @@ let job1 = "programmer";//bad
 let job2 = "teacher";//bad
 
 console.log(myFirstJob);
-*/
+
 ////////////////////////////////////
 // Data Types
 let javascriptIsFun = true;
@@ -50,6 +50,22 @@ year = 1991;
 console.log(typeof year);
 
 console.log(typeof null);//bug - object should be null
-
+*/
 ////////////////////////////////////
 // let, const and var
+let age = 30;
+age = 31;
+
+const birthYear = 1991;
+// birthYear = 1990;
+// const job;
+
+var job = 'programmer';
+job = 'teacher'
+
+lastName = 'Schmedtmann';
+console.log(lastName);
+
+////////////////////////////////////
+// Basic Operators
+// Math operators
