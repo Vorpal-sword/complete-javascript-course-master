@@ -419,7 +419,7 @@ if (age >= 18) {
 console.log(drink2);
 
 console.log(`I like to drink ${age >= 18 ? 'wine 🍷' : 'water 💧'}`);
-*/
+
 ////////////////////////////////////
 // Coding Challenge #4
 
@@ -440,3 +440,4 @@ const bill = 275;
 let tip;
 console.log(`The bill was ${bill}, the tip was ${bill <= 300 && bill >= 50? tip = bill/100*15 : tip = bill/100*20}, and the total value ${bill + tip}`)
 
+*/
