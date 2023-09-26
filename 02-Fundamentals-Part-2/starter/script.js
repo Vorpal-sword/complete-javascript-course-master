@@ -154,7 +154,7 @@ scoreDolphins = calcAverage(85, 54, 41);
 scoreKoalas = calcAverage(23, 34, 27);
 console.log(scoreDolphins, scoreKoalas);
 checkWinner(scoreDolphins, scoreKoalas);
-*/
+
 ///////////////////////////////////////
 // Introduction to Arrays
 
@@ -194,3 +194,34 @@ console.log(age1, age2, age3);
 
 const ages = [calcAge(years[0]), calcAge(years[1]), calcAge(years[years.length - 1])];
 console.log(ages);
+*/
+
+const friends = ['Michael', 'Steven' , 'Peter'];
+
+//Add elements
+const newLength = friends.push('Jay');
+console.log(friends);
+console.log(newLength);
+
+friends.unshift('Max');
+console.log(friends);
+
+//Remove elements
+friends.pop(); //delete last
+const popped = friends.pop();
+console.log(popped);
+console.log(friends);
+
+friends.shift();// delete first element
+console.log(friends);
+
+console.log(friends.indexOf('Steven'));
+console.log(friends.indexOf('Bob'));// return -1 if haven`t element;
+
+console.log(friends.includes('Steven'));//true
+console.log(friends.includes('Bob'));//false
+//use check strict
+
+if (friends.includes('Steven')){
+  console.log('u have a frend called Steven');
+}
