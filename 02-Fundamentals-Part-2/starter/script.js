@@ -363,7 +363,7 @@ const john = {
 mark.calcBMI();
 john.calcBMI();
 console.log(`${john.bmi > mark.bmi ? `${john.fullName} BMI (${john.bmi}) is higher than ${mark.fullName} (${mark.bmi})!` : `${mark.fullName} BMI (${mark.bmi}) is higher than ${john.fullName} (${john.bmi})!`}`);
-*/
+
 ///////////////////////////////////////
 // Iteration: The for Loop
 
@@ -381,4 +381,44 @@ console.log(`${john.bmi > mark.bmi ? `${john.fullName} BMI (${john.bmi}) is high
 // for loop keeps running while condition is TRUE
 for (let rep = 1; rep <= 30; rep++) {
   console.log(`Lifting weights repetition ${rep} 🏋️‍♀️`);
+}
+*/
+
+///////////////////////////////////////
+// Looping Arrays, Breaking and Continuing
+const jonasArray = [
+  'Jonas',
+  'Schmedtmann',
+  2037 - 1991,
+  'teacher',
+  ['Michael', 'Peter', 'Steven'],
+  true,
+];
+const types = []
+for (let i = 0; i < jonasArray.length; i++){
+  console.log(jonasArray[i], typeof jonasArray[i]);
+  types.push(typeof jonasArray[i]);
+}
+console.log(types);
+
+const years = [1991, 2006, 1979, 2022];
+const ages = [];
+ for (let i=0; i < years.length; i++) {
+    ages.push(2037-years[i]);
+ }
+ console/log(ages);
+
+ // continue and break
+console.log('--- ONLY STRINGS ---')
+for (let i = 0; i < jonasArray.length; i++) {
+  if (typeof jonasArray[i] !== 'string') continue;
+
+  console.log(jonasArray[i], typeof jonasArray[i]);
+}
+
+console.log('--- BREAK WITH NUMBER ---')
+for (let i = 0; i < jonasArray.length; i++) {
+  if (typeof jonasArray[i] === 'number') break;
+
+  console.log(jonasArray[i], typeof jonasArray[i]);
 }
