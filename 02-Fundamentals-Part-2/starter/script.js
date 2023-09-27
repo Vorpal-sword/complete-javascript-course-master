@@ -225,7 +225,7 @@ console.log(friends.includes('Bob'));//false
 if (friends.includes('Steven')){
   console.log('u have a frend called Steven');
 }
-*/
+
 const calcTip = function(billValue){
     return billValue > 50 && billValue <300 ? billValue * 0.15 : billValue * 0.20;
 };
@@ -233,3 +233,55 @@ const calcTip = function(billValue){
 const bills = [125, 555, 55];
 const tips = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2]),];
 const totals = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]]
+
+
+///////////////////////////////////////
+// Introduction to Objects
+const jonasArray = [
+  'Jonas',
+  'Schmedtmann',
+  2037 - 1991,
+  'teacher',
+  ['Michael', 'Peter', 'Steven']
+];
+
+const max = {
+  firstName: 'Max',
+  lastName: 'Suprunenko',
+  age: 2037 - 2003,
+  job: 'learner',
+  friends: ['Michael', 'Peter', 'Steven']
+};
+*/
+///////////////////////////////////////
+// Dot vs. Bracket Notation
+
+const max = {
+  firstName: 'Max',
+  lastName: 'Suprunenko',
+  age: 2037 - 2003,
+  job: 'learner',
+  friends: ['Michael', 'Peter', 'Steven']
+};
+console.log(max);
+console.log(max.lastName);// dot notation
+console.log(max['lastName']);//bracket notation
+
+const nameKey = 'Name';
+console.log(max['first' + nameKey]);
+console.log(max['last' + nameKey]);
+
+const interestedIn = prompt('What do u wanna know about Max? Choose between firstName, lastName, age, job, and friends');
+if(max[interestedIn]){
+  console.log(max[interestedIn]);
+} else {
+  console.log('Wrong Request! Choose between firstName, lastName, age, job, and friends');
+}
+
+max.location = 'Ukrainian';
+max['inst'] = '@vorpalsword_yt'
+console.log(max);
+
+//Challenge
+// "Max has 3 friends, and his best friend is called Michael"
+console.log(`${max.firstName} has ${max.friends.length} friends, and his best friend is called ${max.friends[0]}`);
