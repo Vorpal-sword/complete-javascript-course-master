@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /*
 ///////////////////////////////////////
@@ -466,9 +466,8 @@ let dice = Math.trunc(Math.random() * 6) + 1;
 while (dice !== 6) {
   console.log(`You rolled a ${dice}`);
   dice = Math.trunc(Math.random() * 6) + 1;
-  if (dice === 6) console.log('Loop is about to end...');
+  if (dice === 6) console.log("Loop is about to end...");
 }
-
 
 ///////////////////////////////////////
 // Coding Challenge #4
@@ -491,21 +490,21 @@ while (dice !== 6) {
 
 const calcTip = function (bill) {
   return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
-}
+};
 const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
 const tips = [];
 const totals = [];
 
-for(let i = 0; i < bills.length; i++){
-    tips.push(calcTip(bills[i]));
-    totals.push(tips[i] + bills[i]); 
+for (let i = 0; i < bills.length; i++) {
+  tips.push(calcTip(bills[i]));
+  totals.push(tips[i] + bills[i]);
 }
 
 const calcAverage = function (arr) {
   sum = 0;
-  for(i = 0; i < arr.length; i++){
-      sum += arr[i];
+  for (i = 0; i < arr.length; i++) {
+    sum += arr[i];
   }
-  return sum/arr.length;
-}
+  return sum / arr.length;
+};
 calcAverage(totals);
