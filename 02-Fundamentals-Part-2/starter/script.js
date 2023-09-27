@@ -252,7 +252,7 @@ const max = {
   job: 'learner',
   friends: ['Michael', 'Peter', 'Steven']
 };
-*/
+
 ///////////////////////////////////////
 // Dot vs. Bracket Notation
 
@@ -285,3 +285,45 @@ console.log(max);
 //Challenge
 // "Max has 3 friends, and his best friend is called Michael"
 console.log(`${max.firstName} has ${max.friends.length} friends, and his best friend is called ${max.friends[0]}`);
+*/
+
+///////////////////////////////////////
+// Object Methods
+
+const max = {
+  firstName: 'Max',
+  lastName: 'Suprunenko',
+  birthYeah: 2003,
+  job: 'learner',
+  friends: ['Michael', 'Peter', 'Steven'],
+  hasDriverLicense: false,
+
+  // calcAge: function(birthYeah) {
+  //   return 2037 - birthYeah;
+  // }
+
+  // calcAge: function() {
+  //   console.log(this);
+  //   return 2037 - this.birthYeah;
+  // }
+  calcAge: function() {
+    this.age =  2037 - this.birthYeah;
+    return this.age;
+  },
+  getSummery: function(){
+    return `${this.firstName} is a ${this.calcAge()}-year old ${this.job}, and he has ${this.hasDriverLicense?"a":"no"} driver's license`;
+  }
+};
+
+console.log(max.calcAge());
+
+console.log(max.age);
+console.log(max.age);
+console.log(max.age);
+console.log(max.getSummery());
+
+//console.log(max['calcAge'](1991));
+
+//Challenge
+//"Max is a 3..-year old learner, and he has a/no driver's license"
+
