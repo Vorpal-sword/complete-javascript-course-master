@@ -227,10 +227,7 @@ if (friends.includes('Steven')){
 }
 */
 const calcTip = function(billValue){
-    if (billValue > 50 && billValue <300){
-        return billValue / 100 * 15;
-    }
-    else return billValue / 100 * 20;
+    return billValue > 50 && billValue <300 ? billValue * 0.15 : billValue * 0.20;
 };
 
 const bills = [125, 555, 55];
