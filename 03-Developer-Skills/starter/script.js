@@ -1,6 +1,6 @@
 // Remember, we're gonna use strict mode in all scripts now!
 'use strict';
-
+/*
 // const x = 23;
 // if (x === 23) console.log(24);
 
@@ -47,3 +47,28 @@ console.log(calcTempAmplitude(temperatures, [-10, 25]));
 
 // 2) Breaking up into sub-problems
 // - Merge 2 arrays
+*/
+///////////////////////////////////////
+// Debugging with the Console and Breakpoints
+
+const measureKelvin = function () {
+  const measurement = {
+    type: 'temp',
+    unit: 'celsius',
+    // C) Fix
+    //value: Number(prompt('Degrees celsius:')),
+    value: 10,
+  };
+  // B)Fing
+  console.log(measurement);
+  console.table(measurement);
+
+  // console.log(measurement.value);
+  // console.warn(measurement.value);
+  // console.error(measurement.value);
+
+  const kelvin = measurement.value + 273;
+  return kelvin;
+};
+// A) Identift
+console.log(measureKelvin());
