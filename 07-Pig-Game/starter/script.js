@@ -2,8 +2,9 @@
 //Selecting elements
 const score0El = document.querySelector('#score--0');
 const score1El = document.getElementById('score--1');
-const score0Current = document.getElementById('current--0');
-const score1Current = document.getElementById('current--1');
+//const score0Current = document.getElementById('current--0');
+//const score1Current = document.getElementById('current--1');
+const scoreCurrent = document.querySelectorAll('.current-score');
 const Player0 = document.querySelector('.player--0');
 const Player1 = document.querySelector('.player--1');
 const diceEl = document.querySelector('.dice');
@@ -20,8 +21,10 @@ const btnCloseModal = document.querySelector('.close-modal');
 const startNewGame = function () {
   score0El.textContent = 0;
   score1El.textContent = 0;
-  score0Current.textContent = 0;
-  score1Current.textContent = 0;
+  //score0Current.textContent = 0;
+  //score1Current.textContent = 0;
+  scoreCurrent[0].textContent = 0;
+  scoreCurrent[1].textContent = 0;
   diceEl.classList.add('hidden');
 };
 startNewGame();
