@@ -1,5 +1,4 @@
 'use strict';
-
 //Selecting elements
 const score0El = document.querySelector('#score--0');
 const score1El = document.getElementById('score--1');
@@ -12,74 +11,101 @@ const btnRollPress = document.querySelector('.btn--roll');
 const btnHoldPress = document.querySelector('.btn--hold');
 const btnNewGamePress = document.querySelector('.btn--new');
 const imgDice = document.querySelector('.dice');
-
+//modal window part
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.close-modal');
 
-//starting conditions
-score0El.textContent = 0;
-score1El.textContent = 0;
-score0Current.textContent = 0;
-score1Current.textContent = 0;
-diceEl.classList.add('hidden');
-
-const winnerClick = function () {
-  modal.classList.remove('hidden');
-  overlay.classList.remove('hidden');
+//reset variables and start new game
+const startNewGame = function () {
+  score0El.textContent = 0;
+  score1El.textContent = 0;
+  score0Current.textContent = 0;
+  score1Current.textContent = 0;
+  diceEl.classList.add('hidden');
 };
-
+startNewGame();
+// lockStupidTurn
+const lockAndCustomizeBtns = function () {
+  btnRollPress.disabled = 'true';
+  btnRollPress.style.backgroundColor = 'black';
+  btnHoldPress.style.backgroundColor = 'green';
+  btnHoldPress.addEventListener('click', winnerClick);
+};
 const checkClickBtnRoll = function () {
-  let randNumber1To6 = Number(Math.trunc(Math.random() * 6 + 1));
-  if (Player0.classList.contains('player--active')) {
-    if (randNumber1To6 !== 1) {
-      score0El.textContent -= -randNumber1To6;
-      if (
-        Number(score0Current.textContent) + Number(score0El.textContent) >=
-        100
-      ) {
-        btnRollPress.disabled = 'true';
-        btnRollPress.style.backgroundColor = 'black';
-        btnHoldPress.style.backgroundColor = 'green';
-        btnHoldPress.addEventListener('click', winnerClick);
-      }
-      diceEl.classList.remove('hidden');
-      for (let i = 1; i < 7; i++) {
-        if (i === randNumber1To6) {
-          imgDice.src = `dice-${i}.png`;
-        }
-      }
-    } else {
-      score0El.textContent = 0;
-      imgDice.src = 'dice-1.png';
-      checkClickBtnHold();
+  const randNumber1To6 = Number(Math.trunc(Math.random() * 6 + 1));
+  //
+  const activePlayer = Player0.classList.contains('player--active')
+    ? Player0
+    : Player1;
+  const activePlaterScore = activePlayer === Player0 ? score0El : score1El;
+  const currentScore = activePlayer.querySelector('.current-score');
+
+  if (randNumber1To6 !== 1) {
+    activePlaterScore.textContent -= -randNumber1To6;
+    if (
+      Number(currentScore.textContent) +
+        Number(activePlaterScore.textContent) >=
+      100
+    ) {
+      lockAndCustomizeBtns();
     }
-  } else if (Player1.classList.contains('player--active')) {
-    if (randNumber1To6 !== 1) {
-      score1El.textContent -= -randNumber1To6;
-      if (
-        Number(score1Current.textContent) + Number(score1El.textContent) >=
-        100
-      ) {
-        btnRollPress.disabled = 'true';
-        btnRollPress.style.backgroundColor = 'black';
-        btnHoldPress.style.backgroundColor = 'green';
-        btnHoldPress.addEventListener('click', winnerClick);
+    diceEl.classList.remove('hidden');
+    for (let i = 1; i < 7; i++) {
+      if (i === randNumber1To6) {
+        imgDice.src = `dice-${i}.png`;
       }
-      diceEl.classList.remove('hidden');
-      for (let i = 1; i < 7; i++) {
-        if (i === randNumber1To6) {
-          imgDice.src = `dice-${i}.png`;
-        }
-      }
-    } else {
-      score1El.textContent = 0;
-      imgDice.src = 'dice-1.png';
-      checkClickBtnHold();
     }
+  } else {
+    activePlaterScore.textContent = 0;
+    imgDice.src = 'dice-1.png';
+    checkClickBtnHold();
   }
+  // My Previous Code
+  // if (Player0.classList.contains('player--active')) {
+  //   if (randNumber1To6 !== 1) {
+  //     score0El.textContent -= -randNumber1To6;
+  //     if (
+  //       Number(score0Current.textContent) + Number(score0El.textContent) >=
+  //       100
+  //     ) {
+  //       lockAndCustomizeBtns();
+  //     }
+  //     diceEl.classList.remove('hidden');
+  //     for (let i = 1; i < 7; i++) {
+  //       if (i === randNumber1To6) {
+  //         imgDice.src = `dice-${i}.png`;
+  //       }
+  //     }
+  //   } else {
+  //     score0El.textContent = 0;
+  //     imgDice.src = 'dice-1.png';
+  //     checkClickBtnHold();
+  //   }
+  // } else if (Player1.classList.contains('player--active')) {
+  //   if (randNumber1To6 !== 1) {
+  //     score1El.textContent -= -randNumber1To6;
+  //     if (
+  //       Number(score1Current.textContent) + Number(score1El.textContent) >=
+  //       100
+  //     ) {
+  //       lockAndCustomizeBtns();
+  //     }
+  //     diceEl.classList.remove('hidden');
+  //     for (let i = 1; i < 7; i++) {
+  //       if (i === randNumber1To6) {
+  //         imgDice.src = `dice-${i}.png`;
+  //       }
+  //     }
+  //   } else {
+  //     score1El.textContent = 0;
+  //     imgDice.src = 'dice-1.png';
+  //     checkClickBtnHold();
+  //   }
+  // }
 };
 btnRollPress.addEventListener('click', checkClickBtnRoll);
+//Hold btn logic
 const switchActivePlayer = function () {
   Player0.classList.toggle('player--active');
   Player1.classList.toggle('player--active');
@@ -93,6 +119,7 @@ const updateCurrentScore = function () {
   currentScore.textContent =
     Number(currentScore.textContent) + Number(activePlaterScore.textContent);
   activePlaterScore.textContent = 0;
+  //my previous code
   // if (Player0.classList.contains('player--active')) {
   //   score0Current.textContent -= -score0El.textContent;
   //   score0El.textContent = 0;
@@ -107,15 +134,11 @@ const checkClickBtnHold = function () {
 };
 btnHoldPress.addEventListener('click', checkClickBtnHold);
 
-const checkClickBtnNewGame = function () {
-  score0El.textContent = 0;
-  score1El.textContent = 0;
-  score0Current.textContent = 0;
-  score1Current.textContent = 0;
-  diceEl.classList.add('hidden');
+//open modal after winnerClick on hold btn
+const winnerClick = function () {
+  modal.classList.remove('hidden');
+  overlay.classList.remove('hidden');
 };
-btnNewGamePress.addEventListener('click', checkClickBtnNewGame);
-
 //close modal Window
 const closeModal = function () {
   modal.classList.add('hidden');
@@ -129,3 +152,8 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
+//reset and start new game
+const checkClickBtnNewGame = function () {
+  startNewGame();
+};
+btnNewGamePress.addEventListener('click', checkClickBtnNewGame);
