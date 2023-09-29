@@ -16,7 +16,7 @@ const imgDice = document.querySelector('.dice');
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.close-modal');
-const btnsOpenModal = document.querySelectorAll('.show-modal');
+
 //starting conditions
 score0El.textContent = 0;
 score1El.textContent = 0;
@@ -36,7 +36,7 @@ const checkClickBtnRoll = function () {
       score0El.textContent -= -randNumber1To6;
       if (
         Number(score0Current.textContent) + Number(score0El.textContent) >=
-        3
+        100
       ) {
         btnRollPress.disabled = 'true';
         btnRollPress.style.backgroundColor = 'black';
@@ -80,18 +80,30 @@ const checkClickBtnRoll = function () {
   }
 };
 btnRollPress.addEventListener('click', checkClickBtnRoll);
+const switchActivePlayer = function () {
+  Player0.classList.toggle('player--active');
+  Player1.classList.toggle('player--active');
+};
+const updateCurrentScore = function () {
+  const activePlayer = Player0.classList.contains('player--active')
+    ? Player0
+    : Player1;
+  const activePlaterScore = activePlayer === Player0 ? score0El : score1El;
+  const currentScore = activePlayer.querySelector('.current-score');
+  currentScore.textContent =
+    Number(currentScore.textContent) + Number(activePlaterScore.textContent);
+  activePlaterScore.textContent = 0;
+  // if (Player0.classList.contains('player--active')) {
+  //   score0Current.textContent -= -score0El.textContent;
+  //   score0El.textContent = 0;
+  // } else if (Player1.classList.contains('player--active')) {
+  //   score1Current.textContent -= -score1El.textContent;
+  //   score1El.textContent = 0;
+  // }
+};
 const checkClickBtnHold = function () {
-  if (Player0.classList.contains('player--active')) {
-    score0Current.textContent -= -Number(score0El.textContent);
-    Player0.classList.remove('player--active');
-    Player1.classList.add('player--active');
-    score0El.textContent = 0;
-  } else if (Player1.classList.contains('player--active')) {
-    score1Current.textContent -= -Number(score1El.textContent);
-    Player0.classList.add('player--active');
-    Player1.classList.remove('player--active');
-    score1El.textContent = 0;
-  }
+  updateCurrentScore();
+  switchActivePlayer();
 };
 btnHoldPress.addEventListener('click', checkClickBtnHold);
 
