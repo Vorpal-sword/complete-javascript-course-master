@@ -55,7 +55,7 @@ const checkClickBtnRoll = function () {
       if (
         Number(scoreCurrent.textContent) +
           Number(activePlaterScore.textContent) >=
-        50
+        100
       ) {
         lockAndCustomizeBtns();
       }
