@@ -2,11 +2,10 @@
 //Selecting elements
 const score0El = document.querySelector('#score--0');
 const score1El = document.getElementById('score--1');
-//const score0Current = document.getElementById('current--0');
-//const score1Current = document.getElementById('current--1');
-const scoreCurrent = document.querySelectorAll('.current-score');
-const Player0 = document.querySelector('.player--0');
-const Player1 = document.querySelector('.player--1');
+const score0Current = document.getElementById('current--0');
+const score1Current = document.getElementById('current--1');
+const player0 = document.querySelector('.player--0');
+const player1 = document.querySelector('.player--1');
 const diceEl = document.querySelector('.dice');
 const btnRollPress = document.querySelector('.btn--roll');
 const btnHoldPress = document.querySelector('.btn--hold');
@@ -16,124 +15,135 @@ const imgDice = document.querySelector('.dice');
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.close-modal');
+//
+let activePlayer, activePlaterScore, scoreCurrent, playing;
 
 //reset variables and start new game
-const startNewGame = function () {
+const init = function () {
+  playing = true;
+  activePlayer = player0;
+  activePlaterScore = activePlayer === player0 ? score0El : score1El;
+  scoreCurrent = activePlayer.querySelector('.current-score');
   score0El.textContent = 0;
   score1El.textContent = 0;
-  //score0Current.textContent = 0;
-  //score1Current.textContent = 0;
-  scoreCurrent[0].textContent = 0;
-  scoreCurrent[1].textContent = 0;
+  score0Current.textContent = 0;
+  score1Current.textContent = 0;
   diceEl.classList.add('hidden');
+  btnRollPress.style.backgroundColor = 'rgba(255, 255, 255, 0.6)';
+  btnHoldPress.style.backgroundColor = 'rgba(255, 255, 255, 0.6)';
+  player0.classList.remove('player--winner');
+  player1.classList.remove('player--winner');
+  player0.classList.add('player--active');
+  player1.classList.remove('player--active');
 };
-startNewGame();
+init();
 // lockStupidTurn
 const lockAndCustomizeBtns = function () {
-  btnRollPress.disabled = 'true';
-  btnRollPress.style.backgroundColor = 'black';
-  btnHoldPress.style.backgroundColor = 'green';
+  playing = false;
+  diceEl.classList.add('hidden');
+  activePlayer.classList.add('player--winner');
+  activePlayer.classList.remove('player--active');
   btnHoldPress.addEventListener('click', winnerClick);
 };
 const checkClickBtnRoll = function () {
-  const randNumber1To6 = Number(Math.trunc(Math.random() * 6 + 1));
-  //
-  const activePlayer = Player0.classList.contains('player--active')
-    ? Player0
-    : Player1;
-  const activePlaterScore = activePlayer === Player0 ? score0El : score1El;
-  const currentScore = activePlayer.querySelector('.current-score');
-
-  if (randNumber1To6 !== 1) {
-    activePlaterScore.textContent -= -randNumber1To6;
-    if (
-      Number(currentScore.textContent) +
-        Number(activePlaterScore.textContent) >=
-      100
-    ) {
-      lockAndCustomizeBtns();
-    }
-    diceEl.classList.remove('hidden');
-    for (let i = 1; i < 7; i++) {
-      if (i === randNumber1To6) {
-        imgDice.src = `dice-${i}.png`;
+  if (playing) {
+    const dice = Number(Math.trunc(Math.random() * 6 + 1));
+    //
+    if (dice !== 1) {
+      activePlaterScore.textContent =
+        Number(activePlaterScore.textContent) + dice;
+      if (
+        Number(scoreCurrent.textContent) +
+          Number(activePlaterScore.textContent) >=
+        50
+      ) {
+        lockAndCustomizeBtns();
       }
+      diceEl.classList.remove('hidden');
+      for (let i = 1; i < 7; i++) {
+        if (i === dice) {
+          imgDice.src = `dice-${i}.png`;
+        }
+      }
+    } else {
+      activePlaterScore.textContent = 0;
+      imgDice.src = 'dice-1.png';
+      checkClickBtnHold();
     }
-  } else {
-    activePlaterScore.textContent = 0;
-    imgDice.src = 'dice-1.png';
-    checkClickBtnHold();
+    // My Previous Code
+    // if (player0.classList.contains('player--active')) {
+    //   if (dice !== 1) {
+    //     score0El.textContent -= -dice;
+    //     if (
+    //       Number(score0Current.textContent) + Number(score0El.textContent) >=
+    //       100
+    //     ) {
+    //       lockAndCustomizeBtns();
+    //     }
+    //     diceEl.classList.remove('hidden');
+    //     for (let i = 1; i < 7; i++) {
+    //       if (i === dice) {
+    //         imgDice.src = `dice-${i}.png`;
+    //       }
+    //     }
+    //   } else {
+    //     score0El.textContent = 0;
+    //     imgDice.src = 'dice-1.png';
+    //     checkClickBtnHold();
+    //   }
+    // } else if (player1.classList.contains('player--active')) {
+    //   if (dice !== 1) {
+    //     score1El.textContent -= -dice;
+    //     if (
+    //       Number(score1Current.textContent) + Number(score1El.textContent) >=
+    //       100
+    //     ) {
+    //       lockAndCustomizeBtns();
+    //     }
+    //     diceEl.classList.remove('hidden');
+    //     for (let i = 1; i < 7; i++) {
+    //       if (i === dice) {
+    //         imgDice.src = `dice-${i}.png`;
+    //       }
+    //     }
+    //   } else {
+    //     score1El.textContent = 0;
+    //     imgDice.src = 'dice-1.png';
+    //     checkClickBtnHold();
+    //   }
+    // }
   }
-  // My Previous Code
-  // if (Player0.classList.contains('player--active')) {
-  //   if (randNumber1To6 !== 1) {
-  //     score0El.textContent -= -randNumber1To6;
-  //     if (
-  //       Number(score0Current.textContent) + Number(score0El.textContent) >=
-  //       100
-  //     ) {
-  //       lockAndCustomizeBtns();
-  //     }
-  //     diceEl.classList.remove('hidden');
-  //     for (let i = 1; i < 7; i++) {
-  //       if (i === randNumber1To6) {
-  //         imgDice.src = `dice-${i}.png`;
-  //       }
-  //     }
-  //   } else {
-  //     score0El.textContent = 0;
-  //     imgDice.src = 'dice-1.png';
-  //     checkClickBtnHold();
-  //   }
-  // } else if (Player1.classList.contains('player--active')) {
-  //   if (randNumber1To6 !== 1) {
-  //     score1El.textContent -= -randNumber1To6;
-  //     if (
-  //       Number(score1Current.textContent) + Number(score1El.textContent) >=
-  //       100
-  //     ) {
-  //       lockAndCustomizeBtns();
-  //     }
-  //     diceEl.classList.remove('hidden');
-  //     for (let i = 1; i < 7; i++) {
-  //       if (i === randNumber1To6) {
-  //         imgDice.src = `dice-${i}.png`;
-  //       }
-  //     }
-  //   } else {
-  //     score1El.textContent = 0;
-  //     imgDice.src = 'dice-1.png';
-  //     checkClickBtnHold();
-  //   }
-  // }
 };
 btnRollPress.addEventListener('click', checkClickBtnRoll);
 //Hold btn logic
 const switchActivePlayer = function () {
-  Player0.classList.toggle('player--active');
-  Player1.classList.toggle('player--active');
+  player0.classList.toggle('player--active');
+  player1.classList.toggle('player--active');
+  activePlayer = player0.classList.contains('player--active')
+    ? player0
+    : player1;
+  activePlaterScore = activePlayer === player0 ? score0El : score1El;
+  scoreCurrent = activePlayer.querySelector('.current-score');
 };
 const updateCurrentScore = function () {
-  const activePlayer = Player0.classList.contains('player--active')
-    ? Player0
-    : Player1;
-  const activePlaterScore = activePlayer === Player0 ? score0El : score1El;
-  const currentScore = activePlayer.querySelector('.current-score');
-  currentScore.textContent =
-    Number(currentScore.textContent) + Number(activePlaterScore.textContent);
+  scoreCurrent = activePlayer.querySelector('.current-score');
+  scoreCurrent.textContent =
+    Number(scoreCurrent.textContent) + Number(activePlaterScore.textContent);
   activePlaterScore.textContent = 0;
   //my previous code
-  // if (Player0.classList.contains('player--active')) {
+  // if (player0.classList.contains('player--active')) {
   //   score0Current.textContent -= -score0El.textContent;
   //   score0El.textContent = 0;
-  // } else if (Player1.classList.contains('player--active')) {
+  // } else if (player1.classList.contains('player--active')) {
   //   score1Current.textContent -= -score1El.textContent;
   //   score1El.textContent = 0;
   // }
 };
 const checkClickBtnHold = function () {
-  updateCurrentScore();
-  switchActivePlayer();
+  if (playing) {
+    updateCurrentScore();
+    switchActivePlayer();
+  }
 };
 btnHoldPress.addEventListener('click', checkClickBtnHold);
 
@@ -146,6 +156,7 @@ const winnerClick = function () {
 const closeModal = function () {
   modal.classList.add('hidden');
   overlay.classList.add('hidden');
+  btnHoldPress.removeEventListener('click', winnerClick);
 };
 btnCloseModal.addEventListener('click', closeModal);
 overlay.addEventListener('click', closeModal);
@@ -156,7 +167,4 @@ document.addEventListener('keydown', function (e) {
   }
 });
 //reset and start new game
-const checkClickBtnNewGame = function () {
-  startNewGame();
-};
-btnNewGamePress.addEventListener('click', checkClickBtnNewGame);
+btnNewGamePress.addEventListener('click', init);
