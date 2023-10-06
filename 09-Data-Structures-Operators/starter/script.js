@@ -47,6 +47,45 @@ const restaurant = {
   },
 };
 
+const airline = 'TAP Air Portugal';
+const plane = 'A320';
+console.log(plane[0]);
+console.log(plane[1]);
+console.log(plane[2]);
+console.log('B737'[0]);
+
+console.log(airline.length);
+console.log('B737'.length);
+
+console.log(airline.indexOf('r'));
+console.log(airline.lastIndexOf('r'));
+console.log(airline.indexOf('portugal'));
+
+console.log(airline.slice(4));
+console.log(airline.slice(4, 7));
+
+console.log(airline.slice(0, airline.indexOf(' ')));
+console.log(airline.slice(airline.lastIndexOf(' ') + 1));
+
+console.log(airline.slice(-2));
+console.log(airline.slice(1, -1));
+
+const checkMiddleSeat = function (seat) {
+  const s = seat.slice(-1);
+  if (s === 'E' || s == 'B') console.log('You got the middle seat');
+  else console.log('You got lucky');
+  //B and E are middle seats
+};
+
+checkMiddleSeat('11B');
+checkMiddleSeat('23C');
+checkMiddleSeat('3E');
+
+console.log(new String('jonas'));
+console.log(typeof new String('jonas'));
+
+console.log(typeof new String('jonas').slice(1));
+/*
 ///////////////////////////////////////
 // Coding Challenge #3
 
@@ -88,7 +127,7 @@ for (const [t, ev] of gameEvents.entries()) {
   const str = (t < 45 ? '[FIRST HALF] ' : '[SECOND HALF] ') + `${t}: ${ev}`;
   console.log(str);
 }
-/*
+
 ///////////////////////////////////////
 // Maps: Iteration
 const question = new Map([
