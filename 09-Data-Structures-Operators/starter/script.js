@@ -49,6 +49,14 @@ const restaurant = {
   },
 };
 
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+for (const item of menu) console.log(item);
+
+for (const [i, elem] of menu.entries()) {
+  console.log(`${i + 1}: ${elem}`);
+}
+/* 
 ///////////////////////////////////////
 // Coding Challenge #1
 
@@ -130,7 +138,7 @@ const printGoals = function (...players) {
 team1 > team2 && console.log('1-st team likely to win');
 team1 < team2 && console.log('2-st team likely to win');
 
-/* 
+
 const rest1 = {
   name: 'Capre',
   //numGuests: 20,
