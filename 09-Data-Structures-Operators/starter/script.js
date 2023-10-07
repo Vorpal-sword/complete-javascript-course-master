@@ -61,7 +61,7 @@ const delayedItem = '🔴';
 for (const row of rows) {
   const splitedRow = row.split(';');
   const [first, from, to, time] = splitedRow;
-  let firstMod = first.replace('_', ' ');
+  let firstMod = first.replaceAll('_', ' ');
   if (first.includes('Delayed')) {
     firstMod = delayedItem + firstMod;
   }
