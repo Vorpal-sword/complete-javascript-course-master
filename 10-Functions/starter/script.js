@@ -286,3 +286,14 @@ console.log(notPrivate);
 
 ///////////////////////////////////////
 // Closures
+
+const secureBooking = function () {
+  let passangerCount = 0;
+
+  return function () {
+    passangerCount++;
+    console.log(`${passangerCount} passenger`);
+  };
+};
+
+const booker = secureBooking();
