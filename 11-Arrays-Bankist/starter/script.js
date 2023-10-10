@@ -180,7 +180,7 @@ console.log(currenciesUnique);
 currenciesUnique.forEach(function (value, key, map) {
   console.log(`${key}:${value}`);
 });
-*/
+
 // Coding Challenge #1
 
 // Julia and Kate are doing a study on dogs. So each of them asked 5 dog owners about their dog's age, and stored the data into an array (one array for each). For now, they are just interested in knowing whether a dog is an adult or a puppy. A dog is an adult if it is at least 3 years old, and it's a puppy if it's less than 3 years old.
@@ -213,3 +213,4 @@ const checkDogs = (dogsJulia, dogsKate) => {
 };
 checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
 //checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
+*/
