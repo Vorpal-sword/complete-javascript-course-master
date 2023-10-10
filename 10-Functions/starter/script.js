@@ -259,7 +259,7 @@ const poll = {
 const pullBtn = document.querySelector('.poll');
 pullBtn.addEventListener('click', poll.registerNewAnswer.bind(poll));
 
-*/
+
 ///////////////////////////////////////
 // Immediately Invoked Function Expressions (IIFE)
 const runOnce = function () {
@@ -273,7 +273,7 @@ runOnce();
   const isPrivate = 23;
 })();
 
-console.log(isPrivate);
+//console.log(isPrivate);
 
 (() => console.log('This will ALSO never run again'))();
 
@@ -281,9 +281,9 @@ console.log(isPrivate);
   const isPrivate = 23;
   var notPrivate = 46;
 }
-console.log(isPrivate);
+//console.log(isPrivate);
 console.log(notPrivate);
-
+*/
 ///////////////////////////////////////
 // Closures
 
@@ -297,3 +297,9 @@ const secureBooking = function () {
 };
 
 const booker = secureBooking();
+
+booker();
+booker();
+booker();
+
+console.dir(booker);
