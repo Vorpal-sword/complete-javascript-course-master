@@ -361,7 +361,7 @@ const h = function () {
 
 g();
 f();
-console.dir(f);
+s
 
 // Re-assigning f function
 h();
@@ -407,4 +407,3 @@ GOOD LUCK 😀
   });
 })();
 */
-
