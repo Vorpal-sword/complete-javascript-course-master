@@ -76,8 +76,26 @@ const displayMovements = function (movements) {
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
+//
 displayMovements(account1.movements);
-
+const calcDisplaySummary = movement => {
+  const incomes = movement
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${incomes}€`;
+  const outcomes = movement
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `${outcomes}€`;
+};
+calcDisplaySummary(account1.movements);
+//
+const calcDisplatBalance = function (movement) {
+  const balance = movement.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance} EUR`;
+};
+calcDisplatBalance(account1.movements);
+//
 const createUsernames = function (accs) {
   accs.forEach(acc => {
     acc.username = acc.owner
@@ -88,11 +106,7 @@ const createUsernames = function (accs) {
   });
 };
 createUsernames(accounts);
-const calcDisplatBalance = function (movement) {
-  const balance = movement.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${balance} EUR`;
-};
-calcDisplatBalance(account1.movements);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -318,3 +332,13 @@ const calcAverageHumanAge = ages => {
 calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
 calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
 */
+///////////////////////////////////////
+// The Magic of Chaining Methods
+const eurToUsd = 1.1;
+
+//Pipeline
+const totalDepositsUSD = movements
+  .filter(mov => mov > 0)
+  .map(mov => mov * eurToUsd)
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(totalDepositsUSD);
