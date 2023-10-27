@@ -343,6 +343,8 @@ const totalDepositsUSD = movements
   .reduce((acc, mov) => acc + mov, 0);
 console.log(totalDepositsUSD);
 */
+///////////////////////////////////////
+// Coding Challenge #3
 
 // Rewrite the 'calcAverageHumanAge' function from the previous challenge, but this time as an arrow function, and using chaining!
 
@@ -360,3 +362,32 @@ const calcAverageHumanAge = ages => {
 const avg1 = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
 const avg2 = calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
 console.log(avg1, avg2);
+
+//
+// function ArrayChallenge(arr) {
+//   const maxValue = Math.max(...arr);
+//   const otherSum = arr.reduce(
+//     (acc, el) => (el !== maxValue ? acc + el : acc),
+//     0
+//   );
+//   return otherSum === maxValue ? 'true' : 'false';
+//   // if (otherSum === maxValue) {
+//   //   return 'true';
+//   // } else {
+//   //   return 'false';
+//   // }
+// }
+
+// const input = [4, 6, 22, 10, 10, 2];
+// const output = ArrayChallenge(input);
+// console.log(output);
+
+// 17 10 19 12
+// 24 38 21 14
+// 36 21 38 21
+// 34 18 39 46
+
+// 14 26 27 12
+// 21 23 18 32
+// 25 17 19 33
+// 26 15 16 51
